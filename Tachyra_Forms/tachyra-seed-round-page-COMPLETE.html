@@ -1,0 +1,150 @@
+<!-- ============================================================
+TACHYRA DIAGNOSTICS: Seed Round page (investor waiting list)
+Paste this entire code into ONE Custom HTML block on the page, then Update.
+The form sends submissions to the Tachyra Forms service (https://tachyra-forms.onrender.com).
+Clear the site cache afterwards and test one submission.
+============================================================ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@600&family=Source+Sans+3:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+#tqd-page, #tqd-page * { box-sizing: border-box; }
+#tqd-page { background:#F6F5F1; color:#0B1526; font-family:'Source Sans 3',sans-serif; font-size:17px; line-height:1.6; }
+#tqd-page h1, #tqd-page h2, #tqd-page h3 { font-family:'Source Serif 4',serif; font-weight:600; background:none !important; text-shadow:none !important; text-transform:none; letter-spacing:normal; margin:0; }
+#tqd-page h1 { color:#F6F5F1 !important; font-size:52px; line-height:1.1; max-width:900px; }
+#tqd-page h2 { color:#0B1526 !important; font-size:36px; line-height:1.15; margin-bottom:18px; }
+#tqd-page h3 { color:#0B1526 !important; font-size:20px; line-height:1.3; margin-bottom:6px; }
+#tqd-page p { margin:0 0 14px; }
+#tqd-page a { color:#0E7C7B; font-weight:600; }
+#tqd-page .wrap { max-width:1120px; margin:0 auto; padding:64px 32px 8px; }
+#tqd-page .narrow { max-width:780px; }
+#tqd-page .hero { background:#0B1526; color:#F6F5F1; }
+#tqd-page .hero .wrap { padding:72px 32px 80px; display:flex; flex-direction:column; gap:20px; }
+#tqd-page .eyebrow { font-size:14px; font-weight:700; letter-spacing:.16em; color:#9FD3CC; }
+#tqd-page .kicker { font-size:13px; font-weight:700; letter-spacing:.16em; color:#0E7C7B; margin-bottom:10px; }
+#tqd-page .lead { font-size:20px; line-height:1.55; color:#D7EAE6; max-width:780px; margin:0; }
+#tqd-page .btn { display:inline-block; background:#17A398; color:#0B1526 !important; font-weight:700; font-size:17px; padding:14px 28px; border-radius:2px; text-decoration:none; border:0; cursor:pointer; font-family:'Source Sans 3',sans-serif; }
+#tqd-page .btn:hover { background:#128C83; }
+#tqd-page .btn[disabled] { opacity:.6; cursor:wait; }
+#tqd-page .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:20px; }
+#tqd-page .grid.two { grid-template-columns:repeat(2,minmax(0,1fr)); }
+#tqd-page .grid.four { grid-template-columns:repeat(4,minmax(0,1fr)); }
+#tqd-page .card { background:#FFFFFF; border:1px solid #E4E1D8; padding:24px; }
+#tqd-page .card p { color:#3A4A5E; margin:0; }
+#tqd-page .step { border-top:3px solid #17A398; padding-top:14px; }
+#tqd-page .step .num { font-family:'Source Serif 4',serif; font-size:30px; font-weight:600; color:#0E7C7B; }
+#tqd-page .step p { color:#3A4A5E; font-size:16px; margin:0; }
+#tqd-page .note { background:#FFFFFF; border:1px solid #E4E1D8; border-left:4px solid #17A398; padding:24px 28px; }
+#tqd-page .note p:last-child { margin-bottom:0; }
+#tqd-page .banner { background:#E3F4F1; border:1px solid #9FD3CC; color:#0B1526; padding:14px 18px; font-weight:600; max-width:780px; }
+#tqd-page ul.checks { list-style:none; padding:0; margin:0; }
+#tqd-page ul.checks li { padding:6px 0 6px 30px; position:relative; color:#3A4A5E; }
+#tqd-page ul.checks li:before { content:""; position:absolute; left:4px; top:13px; width:12px; height:7px; border-left:2px solid #17A398; border-bottom:2px solid #17A398; transform:rotate(-45deg); }
+#tqd-page .terms { width:100%; border-collapse:collapse; background:#FFFFFF; border:1px solid #E4E1D8; }
+#tqd-page .terms td { padding:14px 18px; border-bottom:1px solid #E4E1D8; vertical-align:top; }
+#tqd-page .terms td:first-child { font-weight:700; width:40%; }
+#tqd-page .person { display:flex; gap:20px; align-items:center; }
+#tqd-page .person img { width:112px; height:112px; object-fit:cover; border-radius:50%; border:3px solid #9FD3CC; flex-shrink:0; background:#E4E1D8; }
+#tqd-page .foot { background:#0B1526; color:#9FB3C4; margin-top:64px; }
+#tqd-page .foot .wrap { padding:28px 32px; font-size:14px; line-height:1.55; }
+#tqd-page .foot a { color:#9FD3CC; }
+/* form */
+#tqd-page form.tqd-form { background:#FFFFFF; border:1px solid #E4E1D8; border-top:4px solid #17A398; padding:36px 40px; max-width:780px; margin:0 auto; }
+#tqd-page .row { display:grid; grid-template-columns:1fr 1fr; gap:0 20px; }
+#tqd-page .field { margin:0 0 18px; }
+#tqd-page label.lbl { display:block; font-weight:700; font-size:16px; margin-bottom:6px; color:#0B1526; }
+#tqd-page .req { color:#B42318; }
+#tqd-page .hint { font-size:14px; color:#4A5878; margin-top:4px; }
+#tqd-page input[type=text], #tqd-page input[type=email], #tqd-page input[type=tel], #tqd-page select, #tqd-page textarea { width:100%; min-height:46px; border:1px solid #C9D3E0; border-radius:2px; padding:10px 12px; font-size:16px; font-family:'Source Sans 3',sans-serif; color:#0B1526; background:#FBFAF7; }
+#tqd-page textarea { min-height:110px; resize:vertical; }
+#tqd-page input:focus, #tqd-page select:focus, #tqd-page textarea:focus { border-color:#17A398; outline:2px solid rgba(23,163,152,.25); }
+#tqd-page .choices { display:flex; flex-wrap:wrap; gap:8px 22px; }
+#tqd-page .choices label, #tqd-page .check { font-size:16px; display:flex; gap:10px; align-items:flex-start; cursor:pointer; color:#0B1526; font-weight:400; }
+#tqd-page .choices input, #tqd-page .check input { width:18px; height:18px; margin-top:4px; accent-color:#17A398; flex-shrink:0; }
+#tqd-page .hp { position:absolute !important; left:-9999px !important; width:1px; height:1px; overflow:hidden; }
+#tqd-page .status { margin-top:16px; padding:14px 16px; display:none; font-size:16px; }
+#tqd-page .status.err { display:block; background:#FDECEA; border:1px solid #F4B4AE; color:#7A1D13; }
+#tqd-page .done { display:none; background:#E3F4F1; border:1px solid #9FD3CC; padding:28px 32px; max-width:780px; margin:0 auto; }
+#tqd-page .done h3 { margin-bottom:8px; }
+#tqd-page .small { font-size:14px; color:#4A5878; }
+@media (max-width:860px) { #tqd-page .grid, #tqd-page .grid.four { grid-template-columns:1fr 1fr; } }
+@media (max-width:600px) {
+  #tqd-page h1 { font-size:36px; } #tqd-page h2 { font-size:28px; }
+  #tqd-page .grid, #tqd-page .grid.two, #tqd-page .grid.four, #tqd-page .row { grid-template-columns:1fr; }
+  #tqd-page .wrap { padding:48px 20px 8px; } #tqd-page .hero .wrap { padding:56px 20px 60px; }
+  #tqd-page form.tqd-form { padding:26px 20px; } #tqd-page .person { align-items:flex-start; }
+  #tqd-page .terms td:first-child { width:45%; }
+}
+body, .site-content, .entry-content, .wp-site-blocks { background:#F6F5F1 !important; }
+</style>
+<div id="tqd-page">
+<div class="hero"><div class="wrap"><div class="eyebrow">SEED ROUND &middot; WAITING LIST &middot; NO SHARES OFFERED HERE</div><h1>Join the Tachyra seed round waiting list.</h1><p class="lead">Tachyra is preparing a limited private round to fund physician outreach for its AI clinical decision support platform. This list is for accredited investors who want first access when the formal offering opens.</p><div><a class="btn" href="#join">Join the waiting list</a></div></div></div>
+<div class="wrap"><div class="kicker">WHAT TACHYRA DOES</div><h2>Built for the visit physicians don&#8217;t have time to prepare for.</h2><div class="grid"><div class="card"><h3>Whole-list medication check</h3><p>Up to 25 current medications checked together, in one pass, against the patient&#8217;s history and conditions.</p></div><div class="card"><h3>Differential diagnosis support</h3><p>Possible explanations for the patient&#8217;s presentation, ranked for the physician to review. Never an autonomous diagnosis.</p></div><div class="card"><h3>Unified records</h3><p>Labs, imaging reports and other records on file combined into one patient view.</p></div></div></div>
+<div class="wrap narrow"><div class="kicker">OFFERING SUMMARY</div><h2>Key terms.</h2><table class="terms"><tbody><tr><td>Structure</td><td>Post-money SAFE</td></tr><tr><td>Founding Investor Tranche</td><td>First $750,000</td></tr><tr><td>Standard Tranche</td><td>The remainder, up to a total of $6,000,000</td></tr><tr><td>Valuation cap and discount</td><td>Set in the offering documents</td></tr><tr><td>Minimum investment</td><td>$25,000</td></tr><tr><td>Who may invest</td><td>Accredited investors only, verified under Rule 506(c)</td></tr></tbody></table><p class="small" style="margin-top:12px">Capacity is limited. Terms are summarized here for convenience; the offering documents control.</p></div>
+<div class="wrap narrow" id="join"><div class="kicker">JOIN</div><h2>Join the seed capital waiting list.</h2><form class="tqd-form" data-form="investor" data-done="done-inv" novalidate>
+<p class="small" style="margin-top:0">Please don&#8217;t enter Social Security, bank or account numbers in this form.</p><div class="hp" aria-hidden="true"><label>Leave this field empty<input type="text" name="company_website" tabindex="-1" autocomplete="off"></label></div>
+<div class="row"><div class="field"><label class="lbl" for="f-first_name">First name <span class="req">*</span></label><input type="text" id="f-first_name" name="first_name" required autocomplete="given-name"></div><div class="field"><label class="lbl" for="f-last_name">Last name <span class="req">*</span></label><input type="text" id="f-last_name" name="last_name" required autocomplete="family-name"></div></div>
+<div class="row"><div class="field"><label class="lbl" for="f-email">Email <span class="req">*</span></label><input type="email" id="f-email" name="email" required autocomplete="email"></div><div class="field"><label class="lbl" for="f-email_confirm">Confirm email <span class="req">*</span></label><input type="email" id="f-email_confirm" name="email_confirm" required></div></div>
+<div class="row"><div class="field"><label class="lbl" for="f-phone">Phone</label><input type="tel" id="f-phone" name="phone" autocomplete="tel"><div class="hint">Optional</div></div><div class="field"><label class="lbl" for="f-state">State of residence <span class="req">*</span></label><select id="f-state" name="state" required><option value="">Select…</option><option value="AL">AL</option><option value="AK">AK</option><option value="AZ">AZ</option><option value="AR">AR</option><option value="CA">CA</option><option value="CO">CO</option><option value="CT">CT</option><option value="DE">DE</option><option value="DC">DC</option><option value="FL">FL</option><option value="GA">GA</option><option value="HI">HI</option><option value="ID">ID</option><option value="IL">IL</option><option value="IN">IN</option><option value="IA">IA</option><option value="KS">KS</option><option value="KY">KY</option><option value="LA">LA</option><option value="ME">ME</option><option value="MD">MD</option><option value="MA">MA</option><option value="MI">MI</option><option value="MN">MN</option><option value="MS">MS</option><option value="MO">MO</option><option value="MT">MT</option><option value="NE">NE</option><option value="NV">NV</option><option value="NH">NH</option><option value="NJ">NJ</option><option value="NM">NM</option><option value="NY">NY</option><option value="NC">NC</option><option value="ND">ND</option><option value="OH">OH</option><option value="OK">OK</option><option value="OR">OR</option><option value="PA">PA</option><option value="RI">RI</option><option value="SC">SC</option><option value="SD">SD</option><option value="TN">TN</option><option value="TX">TX</option><option value="UT">UT</option><option value="VT">VT</option><option value="VA">VA</option><option value="WA">WA</option><option value="WV">WV</option><option value="WI">WI</option><option value="WY">WY</option><option value="PR">PR</option><option value="Outside the U.S.">Outside the U.S.</option></select></div></div>
+<div class="field"><span class="lbl">Are you an accredited investor? <span class="req">*</span></span><div class="choices" role="radiogroup" data-required-group="Are you an accredited investor?"><label><input type="radio" name="accredited" value="Yes"> Yes</label><label><input type="radio" name="accredited" value="No"> No</label><label><input type="radio" name="accredited" value="Not sure"> Not sure</label></div></div>
+<div class="row"><div class="field"><label class="lbl" for="f-amount">Amount you&#8217;re considering</label><select id="f-amount" name="amount"><option value="">Optional</option><option value="$25,000-$49,999">$25,000-$49,999</option><option value="$50,000-$99,999">$50,000-$99,999</option><option value="$100,000-$249,999">$100,000-$249,999</option><option value="$250,000 or more">$250,000 or more</option><option value="Prefer not to say">Prefer not to say</option></select></div><div class="field"><label class="lbl" for="f-heard_about">How did you hear about us?</label><input type="text" id="f-heard_about" name="heard_about"><div class="hint">Optional</div></div></div>
+<div class="field"><label class="check"><input type="checkbox" name="ack_not_offer" required> <span>I understand this is a waiting list, not an offer to sell securities. Any offer will be made only through the offering documents, and only to investors verified as accredited. <span class="req">*</span></span></label></div>
+<p class="small"><span class="req">*</span> Required</p>
+<button type="submit" class="btn">Join the waiting list</button>
+<div class="status" role="alert" aria-live="polite"></div>
+</form>
+<div class="done" id="done-inv" role="status"><h3>Thank you. You&#8217;re on the waiting list.</h3><p>When the offering opens, we&#8217;ll email you the offering documents and the steps to verify accredited-investor status. Please don&#8217;t send financial documents by email.</p></div></div>
+<div class="foot"><div class="wrap">This page is for informational purposes only and is not an offer to sell, or a solicitation of an offer to buy, any security. Any offer will be made only through the company&#8217;s offering documents and only to persons verified as accredited investors under Rule 506(c) of Regulation D. The securities have not been registered under the Securities Act of 1933 or any state securities law. Investing in an early-stage company involves a high degree of risk, including the possible loss of the entire investment. Statements about future plans are forward-looking and may not occur as described. Tachyra is clinical decision support software for licensed clinicians. It does not diagnose, prescribe or recommend dosing, and it does not replace clinical judgment. The treating physician makes every decision.</div></div>
+</div>
+<script>
+(function () {
+  var ENDPOINT = "https://tachyra-forms.onrender.com";
+  var started = Date.now();
+  document.querySelectorAll('#tqd-page form.tqd-form').forEach(function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var status = form.querySelector('.status'), btn = form.querySelector('button[type=submit]');
+      status.className = 'status'; status.textContent = '';
+      var groups = form.querySelectorAll('[data-required-group]');
+      for (var g = 0; g < groups.length; g++) {
+        if (!groups[g].querySelector('input:checked')) {
+          status.className = 'status err'; status.textContent = 'Please choose an option for ' + groups[g].getAttribute('data-required-group') + '.';
+          groups[g].querySelector('input').focus(); return;
+        }
+      }
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var confirm = form.querySelector('[name=email_confirm]');
+      if (confirm && confirm.value.trim().toLowerCase() !== form.querySelector('[name=email]').value.trim().toLowerCase()) {
+        status.className = 'status err'; status.textContent = 'The two email addresses don\'t match.'; confirm.focus(); return;
+      }
+      var data = { elapsed_ms: Date.now() - started };
+      form.querySelectorAll('input, select, textarea').forEach(function (el) {
+        if (!el.name || el.name === 'email_confirm') return;
+        if (el.type === 'checkbox') data[el.name] = el.checked;
+        else if (el.type === 'radio') { if (el.checked) data[el.name] = el.value; }
+        else data[el.name] = el.value;
+      });
+      btn.disabled = true; var label = btn.textContent; btn.textContent = 'Sending\u2026';
+      fetch(ENDPOINT + '/submit/' + form.getAttribute('data-form'), {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data)
+      }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok && j.ok, j: j }; }); })
+        .then(function (res) {
+          if (res.ok) {
+            form.style.display = 'none';
+            var done = document.getElementById(form.getAttribute('data-done'));
+            done.style.display = 'block'; done.setAttribute('tabindex', '-1'); done.focus();
+          } else { throw new Error((res.j && res.j.error) || 'error'); }
+        })
+        .catch(function (err) {
+          btn.disabled = false; btn.textContent = label;
+          status.className = 'status err';
+          var msg = (err && err.message && err.message !== 'error' && err.message.indexOf('fetch') === -1 && err.message.indexOf('JSON') === -1) ? err.message + ' ' : 'We couldn\'t send your form just now. ';
+          status.innerHTML = '';
+          status.appendChild(document.createTextNode(msg + 'Please try again, or email '));
+          var a = document.createElement('a'); a.href = 'mailto:info@tachyradiagnostics.com'; a.textContent = 'info@tachyradiagnostics.com';
+          status.appendChild(a); status.appendChild(document.createTextNode('.'));
+        });
+    });
+  });
+})();
+</script>
